@@ -33,8 +33,8 @@ dev = [
 ]
 
 [project.urls]
-Homepage = ""
-Issues = ""
+Homepage = "https://github.com/truePhilipp/html_to_django"
+Issues = "https://github.com/truePhilipp/html_to_django/issues"
 
 [project.scripts]
 html_to_django = "html_to_django.converter:command_entry"

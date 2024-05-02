@@ -3,6 +3,7 @@
 
 ### Custom ###
 tests/test_project_test_result
+.vscode
 
 ### macOS ###
 # General
