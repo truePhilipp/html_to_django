@@ -19,7 +19,7 @@ def format(soup: BeautifulSoup) -> None:
                 current_sibling = None
             else:
                 current_sibling = None
-        
+
         participating_blocks[-1].insert_after("{% endif %}")
 
         for block in participating_blocks:

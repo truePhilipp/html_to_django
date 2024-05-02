@@ -3,6 +3,23 @@ name: Python package
 on: [push]
 
 jobs:
+  stylecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.12
+      - name: Install Dependencies
+        run: |
+          pip install ".[test]"
+          mypy src || true
+          mypy --install-types --non-interactive
+      - name: Stylecheck
+        run: |
+          mypy --strict src
+          pycodestyle --max-line-length 120 src
   test:
     runs-on: ubuntu-latest
     strategy:
