@@ -37,7 +37,7 @@ Homepage = ""
 Issues = ""
 
 [project.scripts]
-html_to_django = "html_to_django.main:command_entry"
+html_to_django = "html_to_django.converter:command_entry"
 
 [tool.hatch.version]
 path = "html_to_django/__about__.py"
