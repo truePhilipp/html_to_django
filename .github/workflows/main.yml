@@ -14,12 +14,12 @@ jobs:
       - name: Install Dependencies
         run: |
           pip install ".[test]"
-          mypy src || true
+          mypy html_to_django || true
           mypy --install-types --non-interactive
       - name: Stylecheck
         run: |
-          mypy --strict src
-          pycodestyle --max-line-length 120 src
+          mypy --strict html_to_django
+          pycodestyle --max-line-length 120 html_to_django
   test:
     runs-on: ubuntu-latest
     strategy:
