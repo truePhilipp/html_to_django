@@ -1,0 +1,43 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "html_to_django"
+dynamic = ["version"]
+authors = [
+  { name="Philipp Mayr", email="philipp@mayr.software" },
+]
+description = "HTML to Django Converter"
+readme = {file = "README.md", content-type = "text/markdown"}
+license = {file = "LICENSE.txt"}
+keywords = ["html", "django"]
+requires-python = ">= 3.12"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+    "License :: OSI Approved :: MIT License"
+]
+dependencies = [
+    "beautifulsoup4==4.12.3",
+]
+
+[project.optional-dependencies]
+test = [
+    "mypy==1.9.0",
+    "pycodestyle==2.11.1"
+]
+dev = [
+    "hatch==1.10.0"
+]
+
+[project.urls]
+Homepage = ""
+Issues = ""
+
+[project.scripts]
+html_to_django = "html_to_django.main:command_entry"
+
+[tool.hatch.version]
+path = "html_to_django/__about__.py"
