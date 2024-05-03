@@ -1,6 +1,9 @@
 HTML To Django
 ===
 
+![tests workflow](https://github.com/truePhilipp/html_to_django/actions/workflows/tests.yml/badge.svg)
+![stylecheck workflow](https://github.com/truePhilipp/html_to_django/actions/workflows/stylecheck.yml/badge.svg)
+
 Convert HTML files with special syntax to Django template files.
 
 Installation
