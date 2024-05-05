@@ -2,19 +2,19 @@
 {% block content %}
 {% for i in items %}
 <p>
- {{ i.text }}
+    {{ i.text }}
 </p>
 {% if i.selectable %}
 <p>
- Select Me
+    Select Me
 </p>
 {% elif i.other %}
 <p>
- Else if
+    Else if
 </p>
 {% else %}
 <p>
- Else
+    Else
 </p>
 <img src="{% static 'images/cool_image.png' %}"/>
 {% endif %}
