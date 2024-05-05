@@ -5,14 +5,12 @@ from glob import glob
 from .formatters import formatters
 
 
-def get_required_libraries(soup: bs4.BeautifulSoup) -> list[str]:
-    if html := soup.find("html"):
-        if isinstance(html, bs4.Tag):
-            if html.has_attr("dj-libs"):
-                dj_libs = html["dj-libs"]
-                if isinstance(dj_libs, str):
-                    return dj_libs.split(";")
-    return []
+def get_required_libraries(soup: bs4.BeautifulSoup) -> set[str]:
+    libs = set()
+    for element in soup.find_all(attrs={"dj-libs": True}):
+        libs |= set(element.get("dj-libs").split(";"))
+        del element.attrs["dj-libs"]
+    return libs
 
 
 def convert_file(path: str, overwrite: bool = False) -> None:
