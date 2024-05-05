@@ -18,7 +18,9 @@ def convert_file(path: str, overwrite: bool = False) -> None:
         out_path = path.replace(".html", ".n.html")
     with open(out_path, "w") as file:
         file.write("{% load static %}\n")
-        file.write(soup.prettify(formatter=bs4.formatter.HTMLFormatter(indent=4)))
+        file.write(soup
+                   .prettify(formatter=bs4.formatter.HTMLFormatter(indent=4))
+                   .replace("&quot;", '"'))  # Could this cause any issues? (maybe in attributes)
 
 
 def convert_dir(path: str, overwrite: bool = False) -> None:
@@ -29,6 +31,6 @@ def convert_dir(path: str, overwrite: bool = False) -> None:
 def command_entry() -> None:
     path = os.path.abspath(sys.argv[1])
     if os.path.isdir(path):
-        convert_dir(path)
+        convert_dir(path, True)
     elif os.path.isfile(path):
         convert_file(path)
