@@ -18,8 +18,7 @@ def convert_file(path: str, overwrite: bool = False) -> None:
         out_path = path.replace(".html", ".n.html")
     with open(out_path, "w") as file:
         file.write("{% load static %}\n")
-        # indent=4 will be re added when https://github.com/python/typeshed/pull/11855 is accepted
-        file.write(soup.prettify(formatter=bs4.formatter.HTMLFormatter()))
+        file.write(soup.prettify(formatter=bs4.formatter.HTMLFormatter(indent=4)))
 
 
 def convert_dir(path: str, overwrite: bool = False) -> None:
