@@ -1,8 +1,8 @@
 from bs4 import BeautifulSoup
 
 
-def parse_style(style: str) -> dict:
-    result = {}
+def parse_style(style: str) -> dict[str, str]:
+    result: dict[str, str] = {}
     key_buffer = ""
     buffer = ""
     for char in style:
@@ -20,7 +20,7 @@ def parse_style(style: str) -> dict:
     return result
 
 
-def style_to_string(style: dict) -> str:
+def style_to_string(style: dict[str, str]) -> str:
     return ";".join([f"{name}:{value}" for name, value in style.items()])
 
 
