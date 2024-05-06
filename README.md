@@ -1,32 +1,49 @@
-HTML To Django
-===
+# HTML To Django
 
 ![tests workflow](https://github.com/truePhilipp/html_to_django/actions/workflows/tests.yml/badge.svg)
 ![stylecheck workflow](https://github.com/truePhilipp/html_to_django/actions/workflows/stylecheck.yml/badge.svg)
 
-Convert HTML files with special syntax to Django template files.
+Converts HTML files with special attributes to Django templates.
 
-Installation
----
+
+# Installation
 TODO: pip install instructions
 
-Usage
----
+
+# Usage
 ```bash
-html_to_django <path to file or folder to convert>
+html_to_django [-h] [-r] path
+```
+Use `-r` to replace the original files, instead of creating new ones.
+By default, new ones are created in place next to the existing files, with the extension `.n.html`.
+
+You can also use the `html_to_django_r` command if you are unable to pass the `-r` parameter
+(e.g. with the Bootstrap Studio "Export Script" setting)
+
+## Attributes
+To add Django template tags to your HTML files, you need to add special attributes to your HTML tags like this:
+```html
+<div dj-for="user in users">
+    <p>{{ user.name }}</p>
+</div>
+```
+This will be converted to:
+```html
+{% for user in users %}
+<p>{{ user.name }}</p>
+{% endfor %}
 ```
 
-Development
-===
+A complete list can be found in the [Attributes.md](Attributes.md) file.
 
-Testing
----
+
+# Development
+## Testing
 ```bash
 python -m unittest discover tests --verbose
 ```
 
-Stylechecks
----
+## Stylechecks
 ```bash
 mypy --strict html_to_django
 ```
