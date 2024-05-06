@@ -18,7 +18,7 @@ Use `-r` to replace the original files, instead of creating new ones.
 By default, new ones are created in place next to the existing files, with the extension `.n.html`.
 
 You can also use the `html_to_django_r` command if you are unable to pass the `-r` parameter
-(e.g. with the Bootstrap Studio "Export Script" setting)
+(e.g. with the Bootstrap Studio "Export Script" setting).
 
 ## Attributes
 To add Django template tags to your HTML files, you need to add special attributes to your HTML tags like this:
