@@ -38,4 +38,4 @@ A complete list can be found in the [Attributes.md](Attributes.md) file.
 
 
 # Contributing
-To learn how to contribute to this project, please see [CONTRIBUTING.md](CONTRIBUTING.md)
+To learn how to contribute to this project, please see [CONTRIBUTING.md](CONTRIBUTING.md).
