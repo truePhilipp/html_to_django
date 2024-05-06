@@ -27,7 +27,7 @@ def style_to_string(style: dict[str, str]) -> str:
 def format(soup: BeautifulSoup) -> None:
     for element in soup.find_all(attrs={"dj-style": True}):
         style = parse_style(element["style"])
-        dj_style = element.get("dj-style").replace("&quot;", '"')
+        dj_style = element.get("dj-style")
         for name, value, value_type in [declaration.split(";") for declaration in dj_style.split("~") if declaration]:
             style[name] = f"{{{{ {value} }}}}{value_type}"
         element["style"] = style_to_string(style)
