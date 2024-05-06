@@ -37,17 +37,5 @@ This will be converted to:
 A complete list can be found in the [Attributes.md](Attributes.md) file.
 
 
-# Development
-## Testing
-```bash
-python -m unittest discover tests --verbose
-```
-
-## Stylechecks
-```bash
-mypy --strict html_to_django
-```
-and
-```bash
-pycodestyle --max-line-length 120 html_to_django
-```
+# Contributing
+To learn how to contribute to this project, please see [CONTRIBUTING.md](CONTRIBUTING.md)
