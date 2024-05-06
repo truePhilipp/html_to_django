@@ -1,7 +1,6 @@
 import bs4
 import sys
 import os
-import sys
 import argparse
 from glob import glob
 from .formatters import formatters
