@@ -1,6 +1,8 @@
 import bs4
 import sys
 import os
+import sys
+import argparse
 from glob import glob
 from .formatters import formatters
 
@@ -39,9 +41,24 @@ def convert_dir(path: str, overwrite: bool = False) -> None:
         convert_file(filepath, overwrite)
 
 
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser("html_to_django")
+    parser.add_argument("path", help="""
+    The path to a file (or folder of files) to be converted.
+    In case a folder is passed, ALL html files in it (recursivly) will be converted.
+    """, type=str)
+    parser.add_argument("-r", "--replace", help="""
+    Replace the input file(s).
+    """, action='store_true')
+    return parser.parse_args()
+
+
 def command_entry() -> None:
-    path = os.path.abspath(sys.argv[1])
+    args = parse_args()
+    path = os.path.abspath(args.path)
     if os.path.isdir(path):
-        convert_dir(path)
+        convert_dir(path, args.replace)
     elif os.path.isfile(path):
-        convert_file(path)
+        convert_file(path, args.replace)
+    else:
+        sys.exit(f'The path "{path}" does not exist.')
