@@ -34,7 +34,7 @@ This will be converted to:
 {% endfor %}
 ```
 
-A complete list can be found in [here](docs/Attributes.md).
+A complete list of supported attributes can be found [here](docs/Attributes.md).
 
 
 # Contributing
