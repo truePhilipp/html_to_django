@@ -34,8 +34,8 @@ This will be converted to:
 {% endfor %}
 ```
 
-A complete list can be found in the [Attributes.md](Attributes.md) file.
+A complete list can be found in the [Attributes.md](docs/Attributes.md) file.
 
 
 # Contributing
-To learn how to contribute to this project, please see [CONTRIBUTING.md](CONTRIBUTING.md).
+To learn how to contribute to this project, please see [CONTRIBUTING.md](.github/CONTRIBUTING.md).
