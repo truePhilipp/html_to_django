@@ -1,6 +1,4 @@
 """
-if_formatter.py
-
 This module contains a function `format` that modifies a BeautifulSoup object in place.
 The function searches for all elements with the attribute "dj-if". The value of "dj-if" is expected to be a
 string representing a Django template if condition. For each found element, it inserts a Django template if tag

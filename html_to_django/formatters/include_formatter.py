@@ -1,6 +1,4 @@
 """
-include_formatter.py
-
 This module contains a function `format` that modifies a BeautifulSoup object in place.
 The function searches for all elements with the attribute "dj-include". The value of "dj-include" is expected to be a
 string representing a Django template include command. For each found element, it replaces the element's content with

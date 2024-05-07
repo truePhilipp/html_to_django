@@ -1,6 +1,4 @@
 """
-formatters
-
 This package contains modules that define various formatters for modifying a BeautifulSoup object in place.
 
 Each formatter module contains a `format` function that performs a specific modification on the BeautifulSoup object.

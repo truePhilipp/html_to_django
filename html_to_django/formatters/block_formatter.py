@@ -1,6 +1,4 @@
 """
-block_formatter.py
-
 This module contains a function `format` that modifies a BeautifulSoup object in place.
 The function searches for all elements with the attribute "dj-block". The value of "dj-block" is expected to be a
 string representing the name of a Django block. For each found element, it inserts Django block tags before and after

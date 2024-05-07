@@ -1,6 +1,4 @@
 """
-static_formatter.py
-
 This module contains a function `format` that modifies a BeautifulSoup object in place.
 The function searches for all elements with the attribute "dj-static". The value of "dj-static" is expected to be a
 string representing a tag and a static file path separated by a semicolon. For each found element, it replaces the value

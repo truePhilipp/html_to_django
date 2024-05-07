@@ -1,6 +1,4 @@
 """
-style_formatter.py
-
 This module contains a function `format` that modifies a BeautifulSoup object in place. It also contains two helper
 functions, `parse_style` and `style_to_string`.
 

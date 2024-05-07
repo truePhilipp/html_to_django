@@ -1,6 +1,4 @@
 """
-remove_default_formatter.py
-
 This module contains a function `format` that modifies a BeautifulSoup object in place.
 The function searches for the "html" element with the attribute "dj-remove-default". If such an element is found,
 the function removes the Doctype, "head" element, and "script" element within the "body" element from the BeautifulSoup

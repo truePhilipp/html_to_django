@@ -1,6 +1,4 @@
 """
-var_formatter.py
-
 This module contains a function `format` that modifies a BeautifulSoup object in place.
 
 The `format` function searches for all elements with the attribute "dj-var". For each found element, it replaces the

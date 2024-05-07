@@ -1,6 +1,4 @@
 """
-command_formatter.py
-
 This module contains a function `format` that modifies a BeautifulSoup object in place.
 The function searches for all elements with the attribute "dj-command". The value of "dj-command" is expected to be a
 string representing a Django template command. For each found element, it replaces the element's content with the Django

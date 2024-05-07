@@ -1,6 +1,4 @@
 """
-for_wrap_formatter.py
-
 This module contains a function `format` that modifies a BeautifulSoup object in place.
 The function searches for all elements with the attribute "dj-for-wrap". The value of "dj-for-wrap" is expected to be a
 string representing a Django template for loop. For each found element, it inserts a Django template for loop

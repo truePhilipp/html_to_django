@@ -1,6 +1,4 @@
 """
-attr_formatter.py
-
 This module contains a function `format` that modifies a BeautifulSoup object in place.
 The function searches for all elements with the attribute "dj-attr".
 The value of "dj-attr" is expected to be a string with pairs of attributes and values separated by semicolons (;),

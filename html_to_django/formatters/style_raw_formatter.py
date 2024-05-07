@@ -1,6 +1,4 @@
 """
-style_raw_formatter.py
-
 This module contains a function `format` that modifies a BeautifulSoup object in place.
 
 The `format` function searches for all elements with the attribute "dj-style-raw". For each found element, it parses the
