@@ -1,3 +1,17 @@
+"""
+if_formatter.py
+
+This module contains a function `format` that modifies a BeautifulSoup object in place.
+The function searches for all elements with the attribute "dj-if". The value of "dj-if" is expected to be a
+string representing a Django template if condition. For each found element, it inserts a Django template if tag
+before the element. If there are subsequent siblings with "dj-elif" or "dj-else" attributes, it also processes them
+appropriately to form a complete Django template if-elif-else structure. Then it removes the original tags, leaving
+only the Django template if-elif-else structure.
+
+Example:
+    If the elements are <div dj-if="condition1">Test</div><div dj-elif="condition2">Test2</div><div dj-else>Test3</div>,
+    after processing, they become {% if condition1 %}Test{% elif condition2 %}Test2{% else %}Test3{% endif %}.
+"""
 from bs4 import BeautifulSoup
 
 
