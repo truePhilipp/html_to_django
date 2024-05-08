@@ -47,6 +47,9 @@ def convert_file(path: str, overwrite: bool = False) -> None:
         path (str): The path to the HTML file to be converted.
         overwrite (bool, optional): Whether to overwrite the original file. Defaults to False.
     """
+    if not (os.path.exists(path) and os.path.isfile(path)):
+        raise FileNotFoundError
+
     with open(path, "r") as file:
         soup = bs4.BeautifulSoup(file, "html.parser")
 
@@ -75,6 +78,9 @@ def convert_dir(path: str, overwrite: bool = False) -> None:
         path (str): The path to the directory containing the HTML files to be converted.
         overwrite (bool, optional): Whether to overwrite the original files. Defaults to False.
     """
+    if not (os.path.exists(path) and os.path.isdir(path)):
+        raise FileNotFoundError
+
     for filepath in glob(f"{path}/**/*.html", recursive=True):
         convert_file(filepath, overwrite)
 
