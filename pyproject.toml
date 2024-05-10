@@ -1,5 +1,5 @@
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling", "hatch-vcs"]
 build-backend = "hatchling.build"
 
 [project]
@@ -29,7 +29,8 @@ test = [
     "pycodestyle==2.11.1"
 ]
 dev = [
-    "hatch==1.10.0"
+    "hatch==1.10.0",
+    "hatch-vcs==0.4.0"
 ]
 
 [project.urls]
@@ -41,4 +42,4 @@ html_to_django = "html_to_django.converter:command_entry"
 html_to_django_r = "html_to_django.converter:command_entry_r"
 
 [tool.hatch.version]
-path = "html_to_django/__about__.py"
+source = "vcs"
