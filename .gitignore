@@ -2,7 +2,6 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,pycharm+all,macos
 
 ### Custom ###
-tests/test_project_test_result
 .vscode
 
 ### macOS ###
