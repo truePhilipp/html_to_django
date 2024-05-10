@@ -7,7 +7,9 @@ Converts HTML files with special attributes to Django templates.
 
 
 # Installation
-TODO: pip install instructions
+```bash
+pip install html-to-django
+```
 
 
 # Usage
