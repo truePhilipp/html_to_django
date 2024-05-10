@@ -7,7 +7,22 @@ from io import StringIO
 from unittest import TestCase
 from bs4 import BeautifulSoup
 from glob import glob
+from typing import Any
 from html_to_django.converter import get_required_libraries, convert_file, convert_dir, convert_path
+
+
+class TestDirectory(tempfile.TemporaryDirectory):  # type: ignore
+    """
+    Context Manager that creates a temporary directory containing the test project.
+    """
+    def __enter__(self) -> Any:
+        tmpdir = super().__enter__()
+        shutil.copytree(
+            "tests/test_project",
+            tmpdir,
+            dirs_exist_ok=True
+        )
+        return tmpdir
 
 
 class ConverterTests(TestCase):
@@ -24,12 +39,7 @@ class ConverterTests(TestCase):
         self.assertEqual(expected, get_required_libraries(soup))
 
     def test_convert_file(self) -> None:
-        with tempfile.TemporaryDirectory() as tmpdir:
-            shutil.copytree(
-                "tests/test_project",
-                tmpdir,
-                dirs_exist_ok=True
-            )
+        with TestDirectory() as tmpdir:
             convert_file(f"{tmpdir}/test.html")
             # verify that the new file exists and has the expected value
             self.assertTrue(filecmp.cmp(
@@ -43,12 +53,7 @@ class ConverterTests(TestCase):
             ))
 
     def test_convert_file_overwrite(self) -> None:
-        with tempfile.TemporaryDirectory() as tmpdir:
-            shutil.copytree(
-                "tests/test_project",
-                tmpdir,
-                dirs_exist_ok=True
-            )
+        with TestDirectory() as tmpdir:
             convert_file(f"{tmpdir}/test.html", True)
             # verify that the source file has been overwriten
             self.assertTrue(filecmp.cmp(
@@ -59,12 +64,7 @@ class ConverterTests(TestCase):
             self.assertFalse(os.path.exists(f"{tmpdir}/test.n.html"))
 
     def test_convert_file_non_html_extension(self) -> None:
-        with tempfile.TemporaryDirectory() as tmpdir:
-            shutil.copytree(
-                "tests/test_project",
-                tmpdir,
-                dirs_exist_ok=True
-            )
+        with TestDirectory() as tmpdir:
             os.rename(f"{tmpdir}/test.html", f"{tmpdir}/test.txt")
 
             convert_file(f"{tmpdir}/test.txt")
@@ -75,12 +75,7 @@ class ConverterTests(TestCase):
             ))
 
     def test_convert_file_no_extension(self) -> None:
-        with tempfile.TemporaryDirectory() as tmpdir:
-            shutil.copytree(
-                "tests/test_project",
-                tmpdir,
-                dirs_exist_ok=True
-            )
+        with TestDirectory() as tmpdir:
             os.rename(f"{tmpdir}/test.html", f"{tmpdir}/test")
 
             convert_file(f"{tmpdir}/test")
@@ -99,12 +94,7 @@ class ConverterTests(TestCase):
             convert_file("tests/test_project")
 
     def test_convert_dir(self) -> None:
-        with tempfile.TemporaryDirectory() as tmpdir:
-            shutil.copytree(
-                "tests/test_project",
-                tmpdir,
-                dirs_exist_ok=True
-            )
+        with TestDirectory() as tmpdir:
             convert_dir(f"{tmpdir}")
 
             for conversion_result in glob(f"{tmpdir}/**/*.n.html", recursive=True):
@@ -125,12 +115,7 @@ class ConverterTests(TestCase):
                 ))
 
     def test_convert_dir_overwrite(self) -> None:
-        with tempfile.TemporaryDirectory() as tmpdir:
-            shutil.copytree(
-                "tests/test_project",
-                tmpdir,
-                dirs_exist_ok=True
-            )
+        with TestDirectory() as tmpdir:
             convert_dir(f"{tmpdir}", True)
 
             for conversion_result in glob(f"{tmpdir}/**/*.html", recursive=True):
@@ -153,12 +138,7 @@ class ConverterTests(TestCase):
             convert_dir("tests/test_project/test.html")
 
     def test_convert_path_file(self) -> None:
-        with tempfile.TemporaryDirectory() as tmpdir:
-            shutil.copytree(
-                "tests/test_project",
-                tmpdir,
-                dirs_exist_ok=True
-            )
+        with TestDirectory() as tmpdir:
             convert_path(f"{tmpdir}/test.html")
             # verify that the new file exists and has the expected value
             self.assertTrue(filecmp.cmp(
@@ -172,12 +152,7 @@ class ConverterTests(TestCase):
             ))
 
     def test_convert_path_file_overwrite(self) -> None:
-        with tempfile.TemporaryDirectory() as tmpdir:
-            shutil.copytree(
-                "tests/test_project",
-                tmpdir,
-                dirs_exist_ok=True
-            )
+        with TestDirectory() as tmpdir:
             convert_path(f"{tmpdir}/test.html", True)
             # verify that the source file has been overwriten
             self.assertTrue(filecmp.cmp(
@@ -188,12 +163,7 @@ class ConverterTests(TestCase):
             self.assertFalse(os.path.exists(f"{tmpdir}/test.n.html"))
 
     def test_convert_path_dir(self) -> None:
-        with tempfile.TemporaryDirectory() as tmpdir:
-            shutil.copytree(
-                "tests/test_project",
-                tmpdir,
-                dirs_exist_ok=True
-            )
+        with TestDirectory() as tmpdir:
             convert_path(f"{tmpdir}")
 
             for conversion_result in glob(f"{tmpdir}/**/*.n.html", recursive=True):
@@ -214,12 +184,7 @@ class ConverterTests(TestCase):
                 ))
 
     def test_convert_path_dir_overwrite(self) -> None:
-        with tempfile.TemporaryDirectory() as tmpdir:
-            shutil.copytree(
-                "tests/test_project",
-                tmpdir,
-                dirs_exist_ok=True
-            )
+        with TestDirectory() as tmpdir:
             convert_path(f"{tmpdir}", True)
 
             for conversion_result in glob(f"{tmpdir}/**/*.html", recursive=True):
