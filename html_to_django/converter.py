@@ -106,7 +106,7 @@ def parse_args(name: Literal["html_to_django", "html_to_django_r"]) -> Namespace
     return parser.parse_args()
 
 
-def convert_path(path: str, overwrite: bool) -> None:
+def convert_path(path: str, overwrite: bool = False) -> None:
     """
     Converts the special attributes in the HTML files at the given path to Django template tags.
 
@@ -123,13 +123,12 @@ def convert_path(path: str, overwrite: bool) -> None:
                           converted Django templates are written to new files, and the original HTML files are left
                           unchanged.
     """
-    absolute_path = os.path.abspath(path)
-    if os.path.isdir(absolute_path):
-        convert_dir(absolute_path, overwrite)
-    elif os.path.isfile(absolute_path):
-        convert_file(absolute_path, overwrite)
+    if os.path.isdir(path):
+        convert_dir(path, overwrite)
+    elif os.path.isfile(path):
+        convert_file(path, overwrite)
     else:
-        sys.exit(f'The path "{absolute_path}" does not exist.')
+        sys.exit(f'The path "{path}" does not exist.')
 
 
 def command_entry() -> None:
