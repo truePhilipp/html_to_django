@@ -29,3 +29,54 @@
 | Syntax         | `<element dj-for-wrap="item in list">Content</element>`     |
 | Example Input  | `<div dj-for-wrap="item in list">Content</div>`             |
 | Example Output | `{% for item in list %}<div>Content</div>{% endfor %}`      |
+
+| dj-if, dj-elif, dj-else | Replace the elements with a Django template if-elif-else structure.                                                                                      |
+|-------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Syntax                  | `<element dj-if="condition">Content</element>`<br/>`<element dj-elif="condition">Content</element>`<br/>`<element dj-else="condition">Content</element>` |
+| Note                    | The `dj-elif` and `dj-else` attributes are optional. Multiple `dj-elif` attributes are allowed.                                                          |
+| Example Input           | `<div dj-if="condition1">Test</div><div dj-elif="condition2">Test2</div><div dj-else>Test3</div>`                                                        |
+| Example Output          | `{% if condition1 %}Test{% elif condition2 %}Test2{% else %}Test3{% endif %}`                                                                            |
+
+| dj-include     | Replace the content of the element with a Django template include command. |
+|----------------|----------------------------------------------------------------------------|
+| Syntax         | `<element dj-include="template_name"></element>`                           |
+| Example Input  | `<div dj-include="template_name.html"></div>`                              |
+| Example Output | `{% include "template_name.html" %}`                                       |
+
+| dj-remove-default | Removing the Doctype, "head" element, and "script" element within the "body" element. It also unwraps the "body" and "html" elements, leaving only the remaining content of the "body" element. |
+|-------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Syntax            | `<html dj-remove-default>...</html>`                                                                                                                                                            |
+| Note              | This is meant to remove all the default html wrapper code most static html generators produce.                                                                                                  |
+| Example Input     | `<!DOCTYPE html><html dj-remove-default><head>...</head><body>Content<script>...</script></body></html>`                                                                                        |
+| Example Output    | `Content`                                                                                                                                                                                       |
+
+| dj-static      | Replace the value of the specified tag with a Django template static command, using the specified static file path. |
+|----------------|---------------------------------------------------------------------------------------------------------------------|
+| Syntax         | `<element dj-static="tag;static_file_path"></element>`                                                              |
+| Example Input  | `<img dj-static="src;images/pic.jpg">`                                                                              |
+| Example Output | `<img src="{% static 'images/pic.jpg' %}">`                                                                         |
+
+| dj-style       | Modify the style attribute of a element with django variables.                             |
+|----------------|--------------------------------------------------------------------------------------------|
+| Syntax         | `<element dj-style="property1;value1;value_type1~property2;value2;value_type2"></element>` |
+| Note           | The `value_type` is optional. If not included still add the `;` after the value.           |
+| Example Input  | `<div style="color:red" dj-style="background-color;color;~padding;padding;px">`            |
+| Example Output | `<div style="color:red;background-color:{{ color }};padding:{{ padding }}px">`             |
+
+| dj-style-raw   | Modify the style attribute of a element. The value will be inserted as is.       |
+|----------------|----------------------------------------------------------------------------------|
+| Syntax         | `<element dj-style-raw="property1;value1~property2;value2"></element>`           |
+| Example Input  | `<div style="color:red" dj-style-raw="background-color;blue~color:{{ color }}">` |
+| Example Output | `<div style="color:{{ color }};background-color:blue">`                          |
+
+| dj-unwrap      | Remove the element's tags but keeps its content. |
+|----------------|--------------------------------------------------|
+| Syntax         | `<element dj-unwrap>Content</element>`           |
+| Example Input  | `<div dj-unwrap><p>Hello, world!</p></div>`      |
+| Example Output | `<p>Hello, world!</p>`                           |
+
+| dj-var         | Replace the element's content with a Django template variable. |
+|----------------|----------------------------------------------------------------|
+| Syntax         | `<element dj-var="variable_name">Content</element>`            |
+| Example Input  | `<p dj-var="greeting">Hello, world!</p>`                       |
+| Example Output | `<p>{{ greeting }}</p>`                                        |
