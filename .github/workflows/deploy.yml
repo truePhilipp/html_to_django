@@ -31,7 +31,7 @@ jobs:
       - build
     runs-on: ubuntu-latest
     environment:
-      name: pypi
+      name: Deployment
       url: https://pypi.org/p/html_to_django
     permissions:
       id-token: write
