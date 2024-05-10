@@ -58,6 +58,38 @@ class ConverterTests(TestCase):
             # verify that no new file was created
             self.assertFalse(os.path.exists(f"{tmpdir}/test.n.html"))
 
+    def test_convert_file_non_html_extension(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            shutil.copytree(
+                "tests/test_project",
+                tmpdir,
+                dirs_exist_ok=True
+            )
+            os.rename(f"{tmpdir}/test.html", f"{tmpdir}/test.txt")
+
+            convert_file(f"{tmpdir}/test.txt")
+            # verify that the source file has been overwriten
+            self.assertTrue(filecmp.cmp(
+                "tests/test_project_expected_result/test.html",
+                f"{tmpdir}/test.n.txt"
+            ))
+
+    def test_convert_file_no_extension(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            shutil.copytree(
+                "tests/test_project",
+                tmpdir,
+                dirs_exist_ok=True
+            )
+            os.rename(f"{tmpdir}/test.html", f"{tmpdir}/test")
+
+            convert_file(f"{tmpdir}/test")
+            # verify that the source file has been overwriten
+            self.assertTrue(filecmp.cmp(
+                "tests/test_project_expected_result/test.html",
+                f"{tmpdir}/test.n"
+            ))
+
     def test_convert_file_nonexistent(self) -> None:
         with self.assertRaises(FileNotFoundError):
             convert_file("tests/test/project/nonexistent_file.html")

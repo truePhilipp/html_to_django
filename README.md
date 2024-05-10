@@ -14,6 +14,8 @@ TODO: pip install instructions
 ```bash
 html_to_django [-h] [-r] path
 ```
+`path` can either be a path to a file or a folder. When a file is passed only the file itself will be converted. When a folder is passed, all files ending in .html will be replaced. This searches through the folder recursivley.
+
 Use `-r` to replace the original files, instead of creating new ones.
 By default, new ones are created in place next to the existing files, with the extension `.n.html`.
 

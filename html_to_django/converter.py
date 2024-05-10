@@ -61,7 +61,8 @@ def convert_file(path: str, overwrite: bool = False) -> None:
     if overwrite:
         out_path = path
     else:
-        out_path = path.replace(".html", ".n.html")
+        filename, file_extension = os.path.splitext(path)
+        out_path = f"{filename}.n{file_extension}"
     with open(out_path, "w") as file:
         for lib in required_libraries:
             file.write(f"{{% load {lib} %}}\n")
