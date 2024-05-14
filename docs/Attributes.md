@@ -1,5 +1,11 @@
 # Attributes
 
+| dj-assets      | Modify the "href" or "src" attributes of elements with a path prefix and wrap them in a Django static command. |
+|----------------|----------------------------------------------------------------------------------------------------------------|
+| Syntax         | `<html dj-assets="asset_identifier;asset_prefix">...</html>`                                                   |
+| Example Input  | `<html dj-assets="assets;module"><img src="assets/image.png"></html>`                                          |
+| Example Output | `<html><img src="{% static 'module/assets/image.png' %}"/></html>`                                             |
+
 | dj-attr        | Dynamically assign attributes using Django template variables.                        |
 |----------------|---------------------------------------------------------------------------------------|
 | Syntax         | `<element dj-attr="attribute1;value1~attribute2;value2~attribute3;value3"></element>` |
@@ -43,18 +49,24 @@
 | Example Input  | `<div dj-include="template_name.html"></div>`                              |
 | Example Output | `{% include "template_name.html" %}`                                       |
 
-| dj-remove-default | Removing the Doctype, "head" element, and "script" element within the "body" element. It also unwraps the "body" and "html" elements, leaving only the remaining content of the "body" element. |
-|-------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Syntax            | `<html dj-remove-default>...</html>`                                                                                                                                                            |
-| Note              | This is meant to remove all the default html wrapper code most static html generators produce.                                                                                                  |
-| Example Input     | `<!DOCTYPE html><html dj-remove-default><head>...</head><body>Content<script>...</script></body></html>`                                                                                        |
-| Example Output    | `Content`                                                                                                                                                                                       |
+| dj-remove-default | Remove the Doctype, "head" element, and "script" element within the "body" element. It also unwraps the "body" and "html" elements, leaving only the remaining content of the "body" element. |
+|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Syntax            | `<html dj-remove-default>...</html>`                                                                                                                                                          |
+| Note              | This is meant to remove all the default html wrapper code most static html generators produce.                                                                                                |
+| Example Input     | `<!DOCTYPE html><html dj-remove-default><head>...</head><body>Content<script>...</script></body></html>`                                                                                      |
+| Example Output    | `Content`                                                                                                                                                                                     |
+
+| dj-remove      | Remove the element.             |
+|----------------|---------------------------------|
+| Syntax         | `<element dj-remove></element>` |
+| Example Input  | `<div><p dj-remove></p></div>`  |
+| Example Output | ` `                             |
 
 | dj-static      | Replace the value of the specified tag with a Django template static command, using the specified static file path. |
 |----------------|---------------------------------------------------------------------------------------------------------------------|
 | Syntax         | `<element dj-static="tag;static_file_path"></element>`                                                              |
 | Example Input  | `<img dj-static="src;images/pic.jpg">`                                                                              |
-| Example Output | `<img src="{% static 'images/pic.jpg' %}">`                                                                         |
+| Example Output | `<img src="{% static 'images/pic.jpg' %}"/>`                                                                        |
 
 | dj-style       | Modify the style attribute of a element with django variables.                             |
 |----------------|--------------------------------------------------------------------------------------------|
